@@ -6,9 +6,14 @@ use \Linker\FileSystem\FileSystem as FS;
 
 class Keyval {
     private $file;
-    public function __construct(string $file){
-        $this->file = $file;
-        $this->file_init();
+    public function __construct(?string $file = NULL){
+        $this->file($file);
+    }
+    public function file(?string $file = NULL){
+        if($file){
+            $this->file = $file;
+            $this->file_init();
+        }
     }
     public function clear(){
         FS::fwrite($this->file,"<?php\n\$data = [];\n");
